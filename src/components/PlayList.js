@@ -3,11 +3,11 @@ import TrackList from "./TrackList";
 const PlayList = ({ onNameChange, playListTracks, playListName, onRemove, onSave }) => {
     return (
         <>
-            <div class="trackList">
-                <form class="form" onSubmit={onSave}>
+            <div className="trackList">
+                <form className="form" onSubmit={onSave}>
                     <input id="playListName" type="text" onChange={(e) => onNameChange(e.target.value)} defaultValue={playListName} placeholder="Playlist Name"/>
                     {(playListTracks.length > 0)} &&
-                    <button class="btn" onClick={onSave}>
+                    <button className="btn" onClick={onSave}>
                         Save to Collections
                     </button>
                 </form>

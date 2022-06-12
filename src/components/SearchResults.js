@@ -3,7 +3,7 @@ import TrackList from './TrackList'
 const SearchResults = ({ search, searchResults, onAdd }) => {
     return (
         <>
-            <div class="trackList">
+            <div className="trackList">
                 <SearchBar onSearch={search} />
                 <TrackList tracks={searchResults} onAdd={onAdd} />
             </div>
@@ -18,14 +18,14 @@ const SearchBar = ({ onSearch }) => {
     };
     return (
     <>
-        <form class="form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
         <input
             id="searchBar"
             type="text"
             placeholder="Song, album or artist name"
             onChange={(e) => setTerm(e.target.value)}
         />
-        <button class="btn" onClick={handleSubmit}>
+        <button className="btn" onClick={handleSubmit}>
             SEARCH
         </button>
         </form>

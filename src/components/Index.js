@@ -1,13 +1,11 @@
 import '../App.css';
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
 import * as faceApi from "face-api.js";
-import { useHistory } from 'react-router-dom';
+import { useNavigate, Router } from 'react-router-dom';
 import Spotify from '../utils/Spotify';
 import { createUser, getUser } from '../utils/model';
-import { history } from '../App.js';
-import { createBrowserHistory } from 'history';
+import NavBar from './NavBar'
 
 const expressionMap = {
     neutral: "neutral",
@@ -20,19 +18,20 @@ const expressionMap = {
     
 };
 
-const Index = () => {   
+const Index = () => {
+    let navigate = useNavigate();
     // const history = useHistory();
     // const history = createBrowserHistory();
-    // if(localStorage.getItem('user')){
-        // history.push('/create');
-    // }
+    if(localStorage.getItem('user')){
+        navigate('/create');
+    }
 
     const Signup = () => {
         Spotify.getUserId().then((newUserData) => {
             createUser(newUserData)
             .then(req => {
                 if(req){
-                    // history.push('/create');
+                    navigate('/create');
                 } else {
                     alert("Spotify account already registered!")
                 }
@@ -46,7 +45,8 @@ const Index = () => {
             getUser(newUserData.user_id)
             .then(req => {
                 if(req){
-                    // history.push('/create');
+                    navigate('/create');
+                    // console.log(newUserData);
                 } else {
                     alert('Spotify account not found! Signup first');
                 }
@@ -76,8 +76,10 @@ const Index = () => {
             log(e.name, e.message, e.stack);
         }
     };
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("user")))
     useEffect(() => {
         run();
+        setUserData(JSON.parse(localStorage.getItem("user")))
     }, [])
     const onPlay = async () => {
         if (
@@ -112,10 +114,12 @@ const Index = () => {
     };
 
     return (
-        <div class="App">
-        <div class="my-component"/>
+        <>
+        {/* <NavBar userData={userData}/> */}
+        <div className="App">
+        <div className="my-component"/>
         <title>#Mood</title>
-        <div class='heading'>
+        <div className='heading'>
         <h1>#Mood</h1>
         </div>
         <div>
@@ -136,22 +140,20 @@ const Index = () => {
         onPlay={onPlay}
         />
         <br />
-        <button class="btn" onClick={() => run()} >Click Here to Play Again</button>
+        <button className="btn" onClick={() => run()} >Click Here to Play Again</button>
         </div>
-        <div class="container">
+        <div className="container">
             <br /><br /><br />
             <h1>Create Your Mood Playlist</h1>
             <br /><br />
-            <span class="btn" onClick={() => Login()}>Login</span>
+            <span className="btn" onClick={() => Login()}>Login</span>
             <br /><br />
             <p>OR</p>
-            <span class="btn" onClick={() => Signup()}>SignUp</span>
+            <span className="btn" onClick={() => Signup()}>SignUp</span>
         </div>
         </div>
+        </>
     );
 }
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Index />, rootElement);
 
 export default Index;

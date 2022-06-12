@@ -4,9 +4,6 @@ Variables
 ===============
 */
 
-.btn{
-  size: 1000px;
-}
 
 :root {
   /* dark shades of primary color*/
@@ -160,6 +157,23 @@ p {
   text-align: center;
   margin-top: 3rem;
 }
+
+.btnNav{
+  left: 37%;
+  position: relative;
+  display: inline-block;
+  margin: 0rem 0.5rem;
+  background: var(--clr-green-dark);
+  border-radius: 20px;
+  border-color: transparent;
+  color: var(--clr-white);
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align:center;
+}
+
 .btn{
   display: inline-block;
   margin: 0rem 0.5rem;
@@ -171,6 +185,7 @@ p {
   text-transform: capitalize;
   cursor: pointer;
   transition: var(--transition);
+  text-align:center;
 }
 .btn:hover {
   background: var(--clr-green-light);

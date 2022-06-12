@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { deletePlaylist, getPlaylists } from "../utils/model";
 import bgImg from '../assets/pfp.png'
 import Track from './Track'
 const MyCollections = () => {
-    const history = useHistory();
+    // const history = useHistory();
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("user")));
     const [playlists, setPlaylists] = useState([])
     const [activePlaylist, setactivePlaylist] = useState()
     useEffect(() => {
     if (!localStorage.getItem("user")) {
-        history.push("/");
+        // history.push("/");
     }
     getPlaylists(userData?.user_id)
     .then(req => {
@@ -21,7 +21,8 @@ const MyCollections = () => {
     if (!userData) {
         setUserData(JSON.parse(localStorage.getItem("user")))
     }
-    }, [userData, history]);
+    }, [userData]);
+    // }, [userData, history]);
 
     const togglePlaylist = (id) => {
         if (activePlaylist === id) {

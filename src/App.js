@@ -1,10 +1,9 @@
 import React from 'react'
-import { useHistory, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Index from './components/Index';
 import Create from './components/Create';
 import Error from './components/Error'
 import MyCollections from './components/MyCollections';
-import { createBrowserHistory, createMemoryHistory } from "history";
 
 // export const history = createBrowserHistory();
 // export const history = createMemoryHistory();
@@ -15,13 +14,13 @@ const App = () => {
   // const history = createMemoryHistory();
   return (
     // <Router location={history.location} navigator={history}>
-    <Router>
-        <Switch>
-        <Route exact path="/" element={<Index/>} />
+    <BrowserRouter>
+        <Routes>
+        <Route path="/" element={<Index/>} />
         <Route path="/create" element={<Create/>} /> 
         <Route path="/mycollections" element={<MyCollections/> } /> 
         <Route path="*" element={Error} />
-        </Switch>
+        </Routes>
         { 
         // <div>
         //     style={{
@@ -45,7 +44,7 @@ const App = () => {
         //     }}
         // </div> 
         }
-    </Router>
+    </BrowserRouter>
     )
 }
 export default App;

@@ -7,7 +7,7 @@ const NavBar = ({ userData }) => {
     return(
         <>
             <div>
-                <div class="dropDown" onMouseEnter={() => setUserProfile(!userProfile)} onMouseLeave={() => setUserProfile(false)}>
+                <div className="dropDown" onMouseEnter={() => setUserProfile(!userProfile)} onMouseLeave={() => setUserProfile(false)}>
                     <img src={userData?.image || userImg} alt="user"/>
                     {userProfile && <ul>
                         <li><h3>{ userData?.name || 'John Doe' }</h3></li>
@@ -18,10 +18,15 @@ const NavBar = ({ userData }) => {
                         </li>
                     </ul>}
                 </div>
-                <div>
-                    <Link to="/" class="btn">Home</Link>
-                    <Link to="/mycollections" class="btn">Collections</Link>
-                    <Link to="/" class="btn" onClick={() => localStorage.clear()}>Logout</Link>
+                <div className="container">
+                <h1 >MOOD
+                    <br />
+                </h1>
+                </div>
+                <div className="navBtn">
+                    <Link to="/" className="btnNav">Home</Link>
+                    <Link to="/mycollections" className="btnNav">Collections</Link>
+                    <Link to="/" className="btnNav" onClick={() => localStorage.clear()}>Logout</Link>
                 </div>
             </div>
         </>
