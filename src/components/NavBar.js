@@ -1,3 +1,4 @@
+import './NavBar.css';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import userImg from '../assets/pfp.png'
@@ -18,17 +19,29 @@ const NavBar = ({ userData }) => {
                         </li>
                     </ul>}
                 </div>
-                <div className="container">
-                {/* <h1 >MOOD */}
-                    {/* <br /> */}
-                {/* </h1> */}
+                {/* <div className="container"> */}
                 </div>
-                <div className="navBtn">
-                    <Link to="/" className="btnNav">Home</Link>
+                <div>
+                <nav>
+                    <ul> 
+                        <li>
+                        <Link to="/"> Home</Link>
+                        </li>
+                        <li>
+                        <Link to="/mycollections">Collections</Link>
+                        </li>
+                        <li>
+                        <Link to="/" onClick={() => localStorage.clear()}>Logout</Link>
+                        </li>
+                    </ul>
+                </nav>
+                    {/* <Link to="/" className="btnNav">Home</Link>
                     <Link to="/mycollections" className="btnNav">Collections</Link>
-                    <Link to="/" className="btnNav" onClick={() => localStorage.clear()}>Logout</Link>
+                    <Link to="/" className="btnNav" onClick={() => localStorage.clear()}>Logout</Link> */}
                 </div>
-            </div>
+            {/* </div> */}
+           
+  
         </>
     )
 }
