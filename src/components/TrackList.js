@@ -17,7 +17,6 @@ const TrackList = ({ tracks, onAdd, isRemoval, onRemove }) => {
                 <div className="playList">
                 <img src={Img} alt="Oops!" />
                     <h3>Oops! No Tracks founds</h3>
-                    <p>Search and add for a track</p>
                 </div>
             }
         </>

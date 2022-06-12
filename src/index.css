@@ -3,7 +3,7 @@
 Variables
 ===============
 */
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 :root {
   /* dark shades of primary color*/
@@ -72,7 +72,6 @@ Global Styles
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: var(--clr-green-lighter);
 
   background-size: cover;
   background-position: center;
@@ -153,13 +152,14 @@ p {
   }
 }
 
-.video {
-    
+.video{
     text-align: center;
-    transform: translate(-50%);
-    width: 140%;
-    height:140%;
-
+    align-self: auto;
+    width: 75%;
+    height: 75%;
+    display: block;
+    margin: 0 auto;
+    border-color: black;
 }
 
 .container {
@@ -182,7 +182,22 @@ p {
   transition: var(--transition);
   text-align:center;
 }
+.btn_center{
+  display: inline-block;
+  margin: 0rem 0.5rem;
+  background: var(--clr-green-dark);
+  border-radius: 20px;
+  border-color: transparent;
+  color: var(--clr-white);
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align:center;
+  margin: 0;
+  position: absolute;
 
+  }
 .btn{
   display: inline-block;
   margin: 0rem 0.5rem;
@@ -195,6 +210,7 @@ p {
   cursor: pointer;
   transition: var(--transition);
   text-align:center;
+  
 }
 .btn:hover {
   background: var(--clr-green-light);
@@ -241,11 +257,21 @@ p {
   margin: 0rem;
 }
 
-.section {
-  margin: 2rem 0;
-  display: grid;
-  gap: 2rem;
+
+
+.videoDiv {
+  display: block;
+  justify-content: center;
+  align: center;
 }
+
+.mood{
+  display: flex;
+  align-content: center;
+  text-align: center;
+  justify-content: center;
+}
+
 .playList{
   padding: 0.5rem 0rem ;
   background: var(--clr-grey-10);
@@ -274,6 +300,77 @@ p {
   background-color: var(--clr-white);
   min-width: 250px;
   padding: 1rem;
-  position: absolute;
+  position: relative;
 }
 
+nav {
+  max-width: 960px;
+  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  margin: 0 auto;
+  padding: 60px 0;
+}
+
+nav ul {
+  text-align: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  padding: 18px;
+  font-family: "Open Sans";
+  text-transform:uppercase;
+  color: rgba(0, 35, 122, 0.5);
+  font-size: 18px;
+  text-decoration: none;
+  display: block;
+}
+
+nav ul li a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 35, 122, 0.7);
+}
+.moody{
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  font-size: 750%;
+  background: linear-gradient(45deg,#F17C58, #E94584, #24AADB , #27DBB1,#FFDC18, #FF3706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 20s linear infinite;
+  animation-direction: 45deg alternate;
+  background-size: 600% 100%;
+  
+}
+
+.white.bg{
+  background-color: rgba(204, 226, 207, 0.832);
+
+}
+.red.bg{
+  background-color: rgb(191, 62, 3);
+
+}
+.yellow.bg{
+  background-color: rgb(224, 221, 36);
+
+}
+
+.blue.bg{
+  background-color: rgb(0, 234, 255);
+
+}
+
+.orange.bg{
+  background-color: rgb(215, 133, 19);
+
+}
+.pink.bg{
+  background-color: rgb(255, 40, 133);
+}

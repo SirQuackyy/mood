@@ -5,6 +5,7 @@ import { deletePlaylist, getPlaylists } from "../utils/model";
 import bgImg from '../assets/pfp.png'
 import Track from './Track'
 const MyCollections = () => {
+   
     const navigate = useNavigate();
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("user")));
     const [playlists, setPlaylists] = useState([])
