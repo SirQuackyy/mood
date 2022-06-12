@@ -153,6 +153,15 @@ p {
   }
 }
 
+.video {
+    
+    text-align: center;
+    transform: translate(-50%);
+    width: 140%;
+    height:140%;
+
+}
+
 .container {
   text-align: center;
   margin-top: 3rem;
@@ -267,3 +276,4 @@ p {
   padding: 1rem;
   position: absolute;
 }
+

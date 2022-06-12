@@ -21,6 +21,7 @@
     "react-router-dom": "^6.2.0",
     "react-script": "^2.0.5",
     "react-scripts": "^5.0.1",
+    "spotify-web-api-js": "^1.5.2",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },

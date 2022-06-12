@@ -24,6 +24,30 @@ const Spotify = {
             window.location = accessUrl;
         }
     },
+    getUserTop: () => {
+        accessToken = Spotify.getAccessToken()
+        if(accessToken) {
+            const headers = { Authorization: `Bearer ${accessToken}`};
+            return fetch("https://api.spotify.com/v1/me/top/artists?", { headers: headers })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                if(jsonResponse){
+                    const { items } = jsonResponse;
+                    const genres = new Map();
+                    for(let i = 0; i < items.length; i++){
+                        for(let j = 0; j < items[i].genres.length; j++){
+                            if(genres.has(items[i].genres[j])){
+                                genres.set(items[i].genres[j], genres.get(items[i].genres[j]) + 1);
+                            } else {
+                                genres.set(items[i].genres[j], 1);
+                            }
+                        }
+                    }
+                    return genres;
+                }
+            })
+        }
+    },
     getUserId: () => {
         accessToken = Spotify.getAccessToken()
         if(accessToken) {

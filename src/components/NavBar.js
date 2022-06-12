@@ -19,9 +19,9 @@ const NavBar = ({ userData }) => {
                     </ul>}
                 </div>
                 <div className="container">
-                <h1 >MOOD
-                    <br />
-                </h1>
+                {/* <h1 >MOOD */}
+                    {/* <br /> */}
+                {/* </h1> */}
                 </div>
                 <div className="navBtn">
                     <Link to="/" className="btnNav">Home</Link>
