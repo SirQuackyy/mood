@@ -2,7 +2,7 @@ import Create from "../components/Create"
 import { addTrackOut } from "../components/Create"
 
 const clientId = '6a2a92b3c1694082b94fe135954273fb'
-const redirectUri = encodeURIComponent("http://localhost:3000/")
+const redirectUri = encodeURIComponent("https://spotimood.herokuapp.com/")
 const scopes = encodeURIComponent("user-read-private user-read-email playlist-modify-public user-top-read user-read-recently-played user-read-playback-position playlist-modify-public playlist-read-private playlist-modify-private user-library-read")
 
 let accessToken
