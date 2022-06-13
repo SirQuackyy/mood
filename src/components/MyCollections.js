@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { deletePlaylist, getPlaylists } from "../utils/model";
 import bgImg from '../assets/pfp.png'
 import Track from './Track'
+import Spotify from "../utils/Spotify";
 const MyCollections = () => {
    
     const navigate = useNavigate();
@@ -43,12 +44,12 @@ const MyCollections = () => {
     } 
     return (
     <>
+        <div className="collectionz">
         <NavBar userData={userData} />
         <div className="container">
         <h1 >
-            My Collections
-        </h1>
-        <article className="section">            
+            My Collection
+        </h1>     
             <div className="trackList">
                 <div className="playList">
                     {playlists.length ?
@@ -64,6 +65,10 @@ const MyCollections = () => {
                                                 e.preventDefault()
                                                 removePlaylist(playlist)
                                             }}> Delete </button>
+                                            <button className="btn" onClick={(e) => {
+                                                e.preventDefault()
+                                                Spotify.makePlaylist(playlist.tracks, playlist.name);
+                                            }}> Download To Spotify </button>
                                         </div>
                                     </div>
                                 </li>
@@ -82,11 +87,11 @@ const MyCollections = () => {
                         )
                         })
                     :
-                        <h2 >No Playlist saved . . .</h2>
+                        <h3 > No Playlists Are Saved </h3>
                     }
                 </div>
             </div>
-        </article>
+        </div>
         </div>
     </>
     );

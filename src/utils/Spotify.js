@@ -1,4 +1,5 @@
 import Create from "../components/Create"
+import { addTrackOut } from "../components/Create"
 
 const clientId = '6a2a92b3c1694082b94fe135954273fb'
 const redirectUri = encodeURIComponent("http://localhost:3000/")
@@ -258,10 +259,43 @@ const Spotify = {
                         uri: track.uri
                     }))
                     console.log(trackItem);
-                    for(let i = 0; i < trackItem.length; i++){
-                        Create.addTrack(trackItem[i]);
-                    }
+                    // Spotify.makePlaylist(trackItem);
+                    addTrackOut(trackItem);
                 })
+        }
+    },
+    makePlaylist: (tracksList, title) => {
+        accessToken = Spotify.getAccessToken()
+        if(accessToken) {
+            let tracksURIs = [];
+            for(let i = 0; i < tracksList.length; i++){
+                tracksURIs.push(tracksList[i].uri);
+            }
+            
+            const headers= {
+                'Authorization': 'Bearer ' + accessToken,
+                'Content-Type': 'application/json',
+                'Content-Length': '0'
+            };
+            return fetch("https://api.spotify.com/v1/me", { headers: headers })
+            .then(response => response.json())
+            .then(jsonResponse => {
+                if(jsonResponse) {
+                    const { id } = jsonResponse;
+                    return fetch(`https://api.spotify.com/v1/users/${id}/playlists`,
+                    {method: 'POST',
+                    body: JSON.stringify({
+                        'name': `${title}`,
+                        'public': true,
+                    }),
+                    headers: headers})
+                    .then(response2 => response2.json())
+                    .then(jsonResponse2 => {
+                        const { id } = jsonResponse2 
+                        fetch(`https://api.spotify.com/v1/playlists/${id}/tracks?uris=${tracksURIs.join(',')}`, { headers: headers, method: 'POST'});
+                    })
+                }
+            })
         }
     },
         search: (term) => {

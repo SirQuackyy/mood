@@ -24,13 +24,17 @@ const expressionMap = {
     surprised: "surprised"
 
 };
-class C{
-    
+
+let addTrackToPlayList = false;
+let tracksLatest = [];
+let firstRun = true;
+
+export const addTrackOut = (track) => {
+    addTrackToPlayList = true;
+    tracksLatest = track;
 }
+
 const Create = () => {
-    constructor(){
-        const x = addTracks(x);
-    };
     let navigate = useNavigate();
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("user")))
     const video = React.createRef();
@@ -45,6 +49,11 @@ const Create = () => {
 
     const run = async () => {
         log("run started");
+        if(!firstRun){
+            setDisable(true)
+        } else {
+            firstRun = false;
+        }
         try {
             await faceApi.nets.tinyFaceDetector.load("/models/");
             await faceApi.loadFaceExpressionModel(`/models/`);
@@ -60,16 +69,28 @@ const Create = () => {
         }
     };
     useEffect(() => {
-        run();
+        if(firstRun){
+            run();
+        }
         if (!localStorage.getItem('user')) {
             // navigate('/')       
         }
         setUserData(JSON.parse(localStorage.getItem("user")))
-    }, [navigate])
+        if(addTrackToPlayList){
+            for(let i = 0; i < tracksLatest.length; i++){
+                addTrack(tracksLatest[i]);    
+            }
+            addTrackToPlayList = false;
+            setReloadState(!reloadState);
+            setDisable(false);
+        }
+    }, [navigate, addTrackToPlayList])
     const [searchResults, setSearchResults] = useState([])
     const [playListName, setPlayListName] = useState("")
     const [playListTracks, setPlayListTracks] = useState([])
     const [songs, setSongs] = useState([])
+    const [reloadState, setReloadState] = useState(false)
+    const [disable, setDisable] = React.useState(false);
 
     const search = (term) => {
         if (term !== "") {
@@ -137,21 +158,6 @@ const Create = () => {
             log(expressions);
             setExpressions(expressions);
             createPlaylist(expressions);
-            const sorted = expressions.sort((a, b) => b[1] - a[1]);
-            if(sorted[0][0] === "neutral"){
-                expressionNum = 1;
-            }else if(sorted[0][0] === "angry"){
-                expressionNum = 2;
-            }else if(sorted[0][0] === "sad"){
-                expressionNum = 3;
-            }else if(sorted[0][0] === "surprised"){
-                expressionNum = 4;
-            }else if(sorted[0][0] === "happy"){
-                expressionNum = 5;
-            }else {
-                expressionNum=0;
-            }
-            andew(expressionNum);
         }
 
         setTimeout(() => onPlay(), 1000);
@@ -175,42 +181,11 @@ const Create = () => {
 
         Spotify.getUserSongs(highestMood, highestPercentage);
     }
-    const andew = (f) => {
     
-        switch(f){
-            case 0:
-                <div className= "pink.bg">"";</div>
-                break;
-            case 1:
-                <div className = "white.bg">"";</div>
-                break;
-            case 2:
-                <div className = "red.bg">"";</div>
-                break;
-            case 3:
-                <div className = "blue.bg">"";</div>
-                break;
-            case 4:
-                <div className = "orange.bg">"";</div>
-                break;
-            case 5:
-                <div className = "yellow.bg">"";</div> 
-                break;   
-        }
-}
-
     return ( 
-        // call smth to change value of F
-        
-        <body className={andew()}>
 
-        {/* <div className={(f == 0) ? "white.bg" }/>//neutral
-        <div className={(f == 1) ? "orange.bg" }/> //suprised
-        <div className={(f == 2) ? "red.bg" }/> //angry
-        <div className={(f == 3) ? "yellow.bg" }/> //happy
-        <div className={(f == 4) ? "blue.bg" }/> //sad */}
+        <div className = "fullpage">
 
-        
         <>
         <NavBar userData = {
             userData
@@ -221,7 +196,6 @@ const Create = () => {
         <br/>
         </div> 
         <div className = 'videoDiv'>
-        <h3> { highestMood } { highestPercentage } { highestPercentage ? < h3 > % </h3> : <h3></h3 > } </h3> 
         <video className = 'video'
         ref = {
             video
@@ -231,10 +205,10 @@ const Create = () => {
         }/> 
         <br/>
         <br/>
-        <button className = "btn"
-        onClick = {
-            () => run()
-        } > Create a Playlist </button> 
+        <button className = "btn" onClick = {() => run()} disabled={disable} > Create a Playlist </button> 
+            
+        
+        
         </div> {
             /* <SearchResults search={search} searchResults={searchResults} onAdd={doThese} /> */
         } 
@@ -253,10 +227,10 @@ const Create = () => {
         onSave = {
             savePlayList
         }/> 
-       
         </div>
         </>
-        </body>
+        </div>
+        
     )
 }
 

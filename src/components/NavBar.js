@@ -8,7 +8,7 @@ const NavBar = ({ userData }) => {
     return(
         <>
             <div>
-                <div className="dropDown" onMouseEnter={() => setUserProfile(!userProfile)} onMouseLeave={() => setUserProfile(false)}>
+                {/* <div className="dropDown" onMouseEnter={() => setUserProfile(!userProfile)} onMouseLeave={() => setUserProfile(false)}>
                     <img src={userData?.image || userImg} alt="user"/>
                     {userProfile && <ul>
                         <li><h3>{ userData?.name || 'John Doe' }</h3></li>
@@ -18,9 +18,9 @@ const NavBar = ({ userData }) => {
                             </p>
                         </li>
                     </ul>}
-                </div>
+                </div> */}
                 {/* <div className="container"> */}
-                </div>
+            </div>
                 <div>
                 <nav>
                     <ul> 
@@ -32,6 +32,21 @@ const NavBar = ({ userData }) => {
                         </li>
                         <li>
                         <Link to="/" onClick={() => localStorage.clear()}>Logout</Link>
+                        </li>
+                        <li>
+                        {/* <container className = "contain">
+                        <div className="dropDown" onMouseEnter={() => setUserProfile(!userProfile)} onMouseLeave={() => setUserProfile(false)}>
+                    <img src={userData?.image || userImg} alt="user"/>
+                    {userProfile && <ul>
+                        <li><h3>{ userData?.name || 'John Doe' }</h3></li>
+                        <li>
+                            <p>
+                                <a href={userData?.url || '/'} target="_blank" rel="noopener noreferrer">{`Profile >>`}</a>
+                            </p>
+                        </li>
+                    </ul>}
+                    </div>
+                    </container> */}
                         </li>
                     </ul>
                 </nav>
