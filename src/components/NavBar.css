@@ -33,3 +33,8 @@ nav ul li a:hover {
   color: rgba(0, 35, 122, 0.7);
 }
 
+.contain {
+  justify-content: center;
+  
+}
+
